@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-    <title>중학교 3학년 과학 질문-답변 챗봇 (20220805)</title>
+    <title>중3 과학 질문-답변 챗봇</title>
     {% load static %}
     <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico' %}"/>
 </head>
@@ -170,7 +170,7 @@ body {
 </div>
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment-alt"></i> 중학교 3학년 과학 질문-답변 챗봇 (20220805 업데이트)
+        <i class="fas fa-comment-alt"></i>중3 과학 질문-답변 챗봇 (20220805 업데이트)
       </div>
       <div class="msger-header-options">
         <span><i class="fas fa-cog"></i></span>
@@ -210,6 +210,7 @@ msgerForm.addEventListener("submit", event => {
   sendMessage(msgText)
 });
 
+// unix 소켓으로 접속하게 하려면 url에서 :8000 을 삭제해야 함
 function sendMessage(msg){
     {# 유저 에이전트 정보 폼에 등록 #}
     var useragent1 = window.navigator.userAgent;
