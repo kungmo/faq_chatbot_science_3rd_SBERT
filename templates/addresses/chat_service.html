@@ -170,7 +170,7 @@ body {
 </div>
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment-alt"></i>중3 과학 질문-답변 챗봇 (20220813 업데이트)
+        <i class="fas fa-comment-alt"></i>중3 과학 질문-답변 챗봇 (20220830 업데이트)
       </div>
       <div class="msger-header-options">
         <span><i class="fas fa-cog"></i></span>
@@ -217,7 +217,7 @@ function sendMessage(msg){
     document.getElementById('useragent1').value = useragent1.toString()
     {# 데이터(메시지 / 유저에이전트 값) 전송 #}
     $.ajax({
-        url: 'http://146.56.182.40:8000/chat_service/',
+        url: 'http://146.56.182.40/chat_service/',
         type: 'post',
         dataType: 'json',
         data: $('form').serialize(),
