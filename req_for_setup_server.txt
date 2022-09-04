@@ -6,5 +6,4 @@ scipy
 xlrd
 gunicorn
 pymysql
-tensorflow-cpu
 sentence_transformers
