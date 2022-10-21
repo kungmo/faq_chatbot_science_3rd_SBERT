@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-    <title>중3 과학 질문-답변 챗봇</title>
+    <title>중학교 과학 질문-답변 챗봇</title>
     {% load static %}
     <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico' %}"/>
 </head>
@@ -170,7 +170,7 @@ body {
 </div>
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment-alt"></i>중3 과학 질문-답변 챗봇 (20221009 업데이트)
+        <i class="fas fa-comment-alt"></i>중학교 과학 질문-답변 챗봇 (20221021 업데이트)
       </div>
       <div class="msger-header-options">
         <span><i class="fas fa-cog"></i></span>
@@ -182,10 +182,10 @@ body {
 
     <form class="msger-inputarea">
       <input name="input1" type="text" class="msger-input" placeholder="질문을 6글자 이상 최대한 자세하게 쓰세요">
-      <input type="hidden" name="useragent1" id="useragent1" value="">
+      <input name="useragent1" type="hidden" id="useragent1" value="">
       <button class="msger-send-btn">Send</button>
     </form>
-  </section>
+</section>
 <script>
 const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
@@ -209,6 +209,8 @@ msgerForm.addEventListener("submit", event => {
   {# 실질적인 액션 함수 #}
   sendMessage(msgText)
 });
+
+appendMessage(BOT_NAME, BOT_IMG, "left", "안녕하세요? 무엇이 궁금하신가요?");
 
 // 로컬에서 테스트 하려고 url을 localhost로 변경함
 function sendMessage(msg){
