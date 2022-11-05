@@ -21,7 +21,7 @@ qna_num = 0  # 질문답변 번호인 qna_num 초기화
 #두 개의 벡터로부터 코사인 유사도를 구하는 함수 cos_sim를 정의합니다.
 
 def cos_sim(A, B):
-  return dot(A, B)/(norm(A)*norm(B))
+    return dot(A, B)/(norm(A)*norm(B))
 
 #return_answer 함수는 임의의 질문이 들어오면 해당 질문의 문장 임베딩 값과 챗봇 데이터의 임베딩 열.
 #즉, train_data['embedding']에 저장해둔 모든 질문 샘플들의 문장 임베딩 값들을 전부 비교하여
@@ -47,7 +47,7 @@ def faq_answer(input, useragent, client_ip, uuid):
             print("유사질문 {}위 | 유사도: {:0.3f} | 문장 번호: {} | {}".format(i+1, most_sim_answer_largest.iloc[i]['score'], most_sim_answer_largest.iloc[i]['질문'], most_sim_answer_largest.iloc[i]['번호']))
 
             # 질문 입력 시 정보를 데이터베이스에 저장
-            connection = pymysql.connect(host='127.0.0.1', user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+            connection = pymysql.connect(host=152.70.234.27, user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
             with connection.cursor() as cursor:
                 sql = """INSERT INTO datalog (client_ip, uuid, useragent, similarity, student_question, dataset_question, answer)
                          VALUES ('%s', '%s', '%s', '%f', '%s', '%s', '%s')"""%(client_ip, uuid, useragent, most_sim_answer_largest.iloc[i]['score'], input, most_sim_answer_largest.iloc[i]['질문'], result)

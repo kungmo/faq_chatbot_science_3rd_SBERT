@@ -135,4 +135,4 @@ def chat_service(request):
             output['response'] = '비슷한 질문에 대한 답변이 없습니다'
             return HttpResponse(json.dumps(output), status=200)
     else:
-        return render(request, 'addresses/chat_service.html')
+        return render(request, 'addresses/chat_test.html')
