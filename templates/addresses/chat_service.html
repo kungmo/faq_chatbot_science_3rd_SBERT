@@ -196,6 +196,8 @@ const PERSON_IMG = "https://www.svgrepo.com/show/48108/student.svg";
 const BOT_NAME = "BOT";
 const PERSON_NAME = "나";
 
+const uuid1 = getUUID();
+
 $('#close_chat_btn').on('click', function() {
     $('.chat_header').hide().empty();
 })
@@ -217,6 +219,7 @@ function sendMessage(msg){
     {# 유저 에이전트 정보 폼에 등록 #}
     var useragent1 = window.navigator.userAgent;
     document.getElementById('useragent1').value = useragent1.toString()
+    document.getElementById('uuid1').value = uuid1
     {# 데이터(메시지 / 유저에이전트 값) 전송 #}
     $.ajax({
         url: 'http://152.70.234.27/chat_service/',
@@ -279,6 +282,13 @@ function urlify(text) {
   })
   // or alternatively
   // return text.replace(urlRegex, '<a href="$1">$1</a>')
+}
+
+function getUUID() { // UUID v4 generator in JavaScript (RFC4122 compliant)
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 3 | 8);
+    return v.toString(16);
+  });
 }
 </script>
 </body>

@@ -104,7 +104,8 @@ def chat_test(request):
         input1 = request.POST['input1']
         useragent1 = request.POST['useragent1']
         client_ip1 = get_client_ip(request)
-        response = faq_answer(input1, useragent1, client_ip1)
+        uuid1 = request.POST['uuid1']
+        response = faq_answer(input1, useragent1, client_ip1, uuid1)
         try:
             output = dict()
             output['response'] = response
@@ -123,7 +124,8 @@ def chat_service(request):
         input1 = request.POST['input1']
         useragent1 = request.POST['useragent1']
         client_ip1 = get_client_ip(request)
-        response = faq_answer(input1, useragent1, client_ip1)
+        uuid1 = request.POST['uuid1']
+        response = faq_answer(input1, useragent1, client_ip1, uuid1)
         try:
             output = dict()
             output['response'] = response

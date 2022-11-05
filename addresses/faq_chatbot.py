@@ -33,7 +33,7 @@ def return_answer(question):
     return train_data.loc[train_data['score'].idxmax()]['답변']
 
 # FAQ 답변
-def faq_answer(input, useragent, client_ip):
+def faq_answer(input, useragent, client_ip, uuid):
     if len(input) < 6:
         return '질문이 너무 짧아요. 좀 더 구체적으로 질문 부탁해요.'
     else:
@@ -49,12 +49,11 @@ def faq_answer(input, useragent, client_ip):
             # 질문 입력 시 정보를 데이터베이스에 저장
             connection = pymysql.connect(host='127.0.0.1', user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
             with connection.cursor() as cursor:
-                sql = """INSERT INTO datalog (client_ip, useragent, similarity, student_question, dataset_question, answer)
-                         VALUES ('%s', '%s', '%f', '%s', '%s', '%s')"""%(client_ip, useragent, most_sim_answer_largest.iloc[i]['score'], input, most_sim_answer_largest.iloc[i]['질문'], result)
+                sql = """INSERT INTO datalog (client_ip, uuid, useragent, similarity, student_question, dataset_question, answer)
+                         VALUES ('%s', '%s', '%s', '%f', '%s', '%s', '%s')"""%(client_ip, uuid, useragent, most_sim_answer_largest.iloc[i]['score'], input, most_sim_answer_largest.iloc[i]['질문'], result)
                 cursor.execute(sql)
             connection.commit()
             connection.close()
-            print(client_ip)
             if most_sim_answer_largest.iloc[i]['score'] < 0.6:
                 return '입력한 질문에 대한 가장 유사한 질문의 유사도가 {:0.1f}%라서 60% 미만이라 엉뚱한 소리를 할 것 같으니 결과를 출력하지 않을게요. 질문을 더 구체적으로 써 주세요.'.format(most_sim_answer_largest.iloc[i]['score'] * 100)
             else:
