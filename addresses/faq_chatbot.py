@@ -47,7 +47,7 @@ def faq_answer(input, useragent, client_ip, uuid):
             print("유사질문 {}위 | 유사도: {:0.3f} | 문장 번호: {} | {}".format(i+1, most_sim_answer_largest.iloc[i]['score'], most_sim_answer_largest.iloc[i]['질문'], most_sim_answer_largest.iloc[i]['번호']))
 
             # 질문 입력 시 정보를 데이터베이스에 저장
-            connection = pymysql.connect(host=152.70.234.27, user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+            connection = pymysql.connect(host='152.70.234.27', user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
             with connection.cursor() as cursor:
                 sql = """INSERT INTO datalog (client_ip, uuid, useragent, similarity, student_question, dataset_question, answer)
                          VALUES ('%s', '%s', '%s', '%f', '%s', '%s', '%s')"""%(client_ip, uuid, useragent, most_sim_answer_largest.iloc[i]['score'], input, most_sim_answer_largest.iloc[i]['질문'], result)
