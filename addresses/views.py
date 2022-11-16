@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 import json
 from .faq_chatbot import faq_answer
+from .faq_chatbot_2 import faq_answer_2
 
 # 장고에서 제공하는 사용자 IP 획득 함수
 def get_client_ip(request):
@@ -117,6 +118,25 @@ def chat_test(request):
     else:
         return render(request, 'addresses/chat_test.html')
 
+@csrf_exempt
+def chat_test_2(request):
+    if request.method == 'POST':
+        input1 = request.POST['input1']
+        useragent1 = request.POST['useragent1']
+        client_ip1 = get_client_ip(request)
+        uuid1 = request.POST['uuid1']
+        response = faq_answer_2(input1, useragent1, client_ip1, uuid1)
+        try:
+            output = dict()
+            output['response'] = response
+            return HttpResponse(json.dumps(output), status=200)
+        except:
+            output = dict()
+            output['response'] = '비슷한 질문에 대한 답변이 없습니다'
+            return HttpResponse(json.dumps(output), status=200)
+    else:
+        return render(request, 'addresses/chat_test_2.html')
+
 # 0.0.0.0/chat_service 웹 사이트 배포용
 @csrf_exempt
 def chat_service(request):
@@ -136,3 +156,22 @@ def chat_service(request):
             return HttpResponse(json.dumps(output), status=200)
     else:
         return render(request, 'addresses/chat_service.html')
+
+@csrf_exempt
+def chat_service_2(request):
+    if request.method == 'POST':
+        input1 = request.POST['input1']
+        useragent1 = request.POST['useragent1']
+        client_ip1 = get_client_ip(request)
+        uuid1 = request.POST['uuid1']
+        response = faq_answer_2(input1, useragent1, client_ip1, uuid1)
+        try:
+            output = dict()
+            output['response'] = response
+            return HttpResponse(json.dumps(output), status=200)
+        except:
+            output = dict()
+            output['response'] = '비슷한 질문에 대한 답변이 없습니다'
+            return HttpResponse(json.dumps(output), status=200)
+    else:
+        return render(request, 'addresses/chat_service_2.html')
