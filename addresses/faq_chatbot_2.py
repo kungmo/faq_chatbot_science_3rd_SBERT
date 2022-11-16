@@ -33,7 +33,7 @@ def return_answer(question):
     return train_data.loc[train_data['score'].idxmax()]['답변']
 
 # FAQ 답변
-def faq_answer(input, useragent, client_ip, uuid):
+def faq_answer_2(input, useragent, client_ip, uuid):
     if len(input) < 6:
         return '질문이 너무 짧아요. 좀 더 구체적으로 질문 부탁해요.'
     else:
