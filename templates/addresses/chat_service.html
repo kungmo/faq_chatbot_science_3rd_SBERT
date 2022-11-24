@@ -170,7 +170,7 @@ body {
 </div>
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment-alt"></i>장내중학교 과학 질문-답변 챗봇 (20221115 업데이트)
+        <i class="fas fa-comment-alt"></i>장내중학교 과학 질문-답변 챗봇 (20221124 업데이트)
       </div>
       <div class="msger-header-options">
         <span><i class="fas fa-cog"></i></span>
@@ -227,8 +227,8 @@ function sendMessage(msg){
         type: 'post',
         dataType: 'json',
         data: $('form').serialize(),
-        success: function(data) {
-            const returnMsg = data.response
+        success: function(res) {
+            const returnMsg = res.response
             {# 질문을 화면에 렌더링 #}
             appendMessage(PERSON_NAME, PERSON_IMG, "right", msg);
             {# 리턴 메시지 화면에 렌더링 #}
