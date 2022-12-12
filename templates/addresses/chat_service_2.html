@@ -170,7 +170,7 @@ body {
 </div>
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-comment-alt"></i>범박고등학교 과학 질문-답변 챗봇 (20221211 업데이트)
+        <i class="fas fa-comment-alt"></i>범박고등학교 과학 질문-답변 챗봇 (20221212 업데이트)
       </div>
       <div class="msger-header-options">
         <span><i class="fas fa-cog"></i></span>
@@ -213,7 +213,9 @@ msgerForm.addEventListener("submit", event => {
   sendMessage(msgText)
 });
 
-appendMessage(BOT_NAME, BOT_IMG, "left", "안녕하세요? 무엇이 궁금하신가요?");
+appendMessage(BOT_NAME, BOT_IMG, "left", "안녕하세요? 저는 범박고 과학 선생님의 분신이에요.");
+appendMessage(BOT_NAME, BOT_IMG, "left", "저는 통합과학 질문에 답해줄 수 있어요.");
+appendMessage(BOT_NAME, BOT_IMG, "left", "이온과 원자의 차이를 알려줘 처럼 자세히 물어보세요.");
 
 // unix 소켓으로 접속하게 하려면 url에서 :8000 을 삭제해야 함
 function sendMessage(msg){

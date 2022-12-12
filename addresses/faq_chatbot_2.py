@@ -55,7 +55,7 @@ def faq_answer_2(input, useragent, client_ip, uuid):
             connection.commit()
             connection.close()
             if most_sim_answer_largest.iloc[i]['score'] < 0.6:
-                return '입력한 질문에 대한 가장 유사한 질문의 유사도가 {:0.1f}%라서 60% 미만이라 엉뚱한 소리를 할 것 같으니 결과를 출력하지 않을게요. 질문을 더 구체적으로 써 주세요.'.format(most_sim_answer_largest.iloc[i]['score'] * 100)
+                return '입력한 질문에 대한 가장 유사한 질문의 유사도가 {:0.1f}%라서 60% 미만이라 엉뚱한 소리를 할 것 같으니 결과를 출력하지 않을게요. 질문을 더 구체적으로 써 주시거나 다른 질문을 해 주시면 제가 답변드릴 기회를 얻을 수 있을 것 같아요.'.format(most_sim_answer_largest.iloc[i]['score'] * 100)
             else:
                 return '입력한 질문과의 유사도: {:0.1f}%<br/><br/>질문: '.format(most_sim_answer_largest.iloc[i]['score'] * 100) + most_sim_answer_largest.iloc[i]['질문'] + '<br/><br/>답변: ' + result
 
