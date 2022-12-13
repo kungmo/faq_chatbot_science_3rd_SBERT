@@ -215,8 +215,8 @@ msgerForm.addEventListener("submit", event => {
 });
 
 appendMessage(BOT_NAME, BOT_IMG, "left", "안녕하세요? 저는 장내중 과학 선생님의 분신이에요.");
-appendMessage(BOT_NAME, BOT_IMG, "left", "저는 중학교 과학 질문에 답해줄 수 있어요.");
-appendMessage(BOT_NAME, BOT_IMG, "left", "염분비 일정법칙이 뭐야 처럼 자세히 물어보세요.");
+setTimeout(function() {appendMessage(BOT_NAME, BOT_IMG, "left", "저는 중학교 과학 질문에 답해줄 수 있어요.");}, 1000);
+setTimeout(function() {appendMessage(BOT_NAME, BOT_IMG, "left", "염분비 일정법칙이 뭐야 처럼 자세히 물어보세요.");}, 2000);
 
 // 로컬에서 테스트 하려고 url을 localhost로 변경함
 function sendMessage(msg){
