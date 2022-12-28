@@ -33,30 +33,38 @@ def return_answer(question):
     return train_data.loc[train_data['score'].idxmax()]['답변']
 
 # FAQ 답변
-def faq_answer_2(input, useragent, client_ip, uuid):
-    if len(input) < 6:
-        return '질문이 너무 짧아요. 좀 더 구체적으로 질문 부탁해요.'
+def faq_answer_2(input, useragent, client_ip, uuid, star_val):
+    if star_val =="0":
+        if len(input) < 6:
+            return '질문이 너무 짧아요. 좀 더 구체적으로 질문 부탁해요.'
+        else:
+            topn = 1  # 가장 유사한 질문 한 개까지만
+            result = return_answer(input)
+            most_sim_answer_largest = train_data.nlargest(topn, "score")
+            if star_val == "0":
+                for i in range(topn):
+                    print("유사질문 {}위 | 유사도: {:0.3f} | 문장 번호: {} | {}".format(i+1, most_sim_answer_largest.iloc[i]['score'], most_sim_answer_largest.iloc[i]['질문'], most_sim_answer_largest.iloc[i]['번호']))
+                    # 질문 입력 시 정보를 데이터베이스에 저장
+                    connection = pymysql.connect(host='127.0.0.1', user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+                    with connection.cursor() as cursor:
+                        sql = """INSERT INTO datalog_2 (client_ip, uuid, useragent, similarity, student_question, dataset_question, answer, star_val)
+                                VALUES ('%s', '%s', '%s', '%f', '%s', '%s', '%s', '%d')"""%(client_ip, uuid, useragent, most_sim_answer_largest.iloc[i]['score'], input, most_sim_answer_largest.iloc[i]['질문'], result, int(star_val))
+                        cursor.execute(sql)
+                        print("질문-답변 데이터베이스 기록")
+                    connection.commit()
+                    connection.close()
+                    if most_sim_answer_largest.iloc[i]['score'] < 0.6:
+                        return '입력한 질문에 대한 가장 유사한 질문의 유사도가 {:0.1f}%라서 60% 미만이라 엉뚱한 소리를 할 것 같으니 결과를 출력하지 않을게요. 질문을 더 구체적으로 써 주세요.'.format(most_sim_answer_largest.iloc[i]['score'] * 100)
+                    else:
+                        return '입력한 질문과의 유사도: {:0.1f}%<br/><br/>질문: '.format(most_sim_answer_largest.iloc[i]['score'] * 100) + most_sim_answer_largest.iloc[i]['질문'] + '<br/><br/>답변: ' + result
     else:
-        # 테스트하는 문장도 같은 전처리를 해준다.
-
-        topn = 1  # 가장 유사한 질문 한 개까지만
-        result = return_answer(input)
-        most_sim_answer_largest = train_data.nlargest(topn, "score")
-
-        for i in range(topn):
-            print("유사질문 {}위 | 유사도: {:0.3f} | 문장 번호: {} | {}".format(i+1, most_sim_answer_largest.iloc[i]['score'], most_sim_answer_largest.iloc[i]['질문'], most_sim_answer_largest.iloc[i]['번호']))
-
-            # 질문 입력 시 정보를 데이터베이스에 저장
-            connection = pymysql.connect(host='152.70.234.27', user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
-            with connection.cursor() as cursor:
-                sql = """INSERT INTO datalog_2 (client_ip, uuid, useragent, similarity, student_question, dataset_question, answer)
-                         VALUES ('%s', '%s', '%s', '%f', '%s', '%s', '%s')"""%(client_ip, uuid, useragent, most_sim_answer_largest.iloc[i]['score'], input, most_sim_answer_largest.iloc[i]['질문'], result)
-                cursor.execute(sql)
-            connection.commit()
-            connection.close()
-            if most_sim_answer_largest.iloc[i]['score'] < 0.6:
-                return '입력한 질문에 대한 가장 유사한 질문의 유사도가 {:0.1f}%라서 60% 미만이라 엉뚱한 소리를 할 것 같으니 결과를 출력하지 않을게요. 질문을 더 구체적으로 써 주시거나 다른 질문을 해 주시면 제가 답변드릴 기회를 얻을 수 있을 것 같아요.'.format(most_sim_answer_largest.iloc[i]['score'] * 100)
-            else:
-                return '입력한 질문과의 유사도: {:0.1f}%<br/><br/>질문: '.format(most_sim_answer_largest.iloc[i]['score'] * 100) + most_sim_answer_largest.iloc[i]['질문'] + '<br/><br/>답변: ' + result
+        connection = pymysql.connect(host='127.0.0.1', user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = """UPDATE datalog_2 SET star_val = '%d' WHERE uuid = '%s' AND input_time IN (SELECT MAX(input_time) from datalog_2 WHERE uuid = '%s')"""%(int(star_val), uuid, uuid)
+            cursor.execute(sql)
+        connection.commit()
+        connection.close()
+        print("가장 최근 uuid의 별점만 업데이트")
+        star_val = 0 # 별점 초기화
 
 print('챗봇 불러오기 완료')
