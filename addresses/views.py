@@ -106,7 +106,8 @@ def chat_test(request):
         useragent1 = request.POST['useragent1']
         client_ip1 = get_client_ip(request)
         uuid1 = request.POST['uuid1']
-        response = faq_answer(input1, useragent1, client_ip1, uuid1)
+        star_val1 = request.POST['star_val1']
+        response = faq_answer_2(input1, useragent1, client_ip1, uuid1, star_val1)
         try:
             output = dict()
             output['response'] = response
@@ -125,7 +126,8 @@ def chat_test_2(request):
         useragent1 = request.POST['useragent1']
         client_ip1 = get_client_ip(request)
         uuid1 = request.POST['uuid1']
-        response = faq_answer_2(input1, useragent1, client_ip1, uuid1)
+        star_val1 = request.POST['star_val1']
+        response = faq_answer_2(input1, useragent1, client_ip1, uuid1, star_val1)
         try:
             output = dict()
             output['response'] = response
@@ -145,7 +147,8 @@ def chat_service(request):
         useragent1 = request.POST['useragent1']
         client_ip1 = get_client_ip(request)
         uuid1 = request.POST['uuid1']
-        response = faq_answer(input1, useragent1, client_ip1, uuid1)
+        star_val1 = request.POST['star_val1']
+        response = faq_answer_2(input1, useragent1, client_ip1, uuid1, star_val1)
         try:
             output = dict()
             output['response'] = response
@@ -164,7 +167,8 @@ def chat_service_2(request):
         useragent1 = request.POST['useragent1']
         client_ip1 = get_client_ip(request)
         uuid1 = request.POST['uuid1']
-        response = faq_answer_2(input1, useragent1, client_ip1, uuid1)
+        star_val1 = request.POST['star_val1']
+        response = faq_answer_2(input1, useragent1, client_ip1, uuid1, star_val1)
         try:
             output = dict()
             output['response'] = response
