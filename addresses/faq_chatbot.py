@@ -60,7 +60,7 @@ def faq_answer(input, useragent, client_ip, uuid, star_val):
     else:
         connection = pymysql.connect(host='127.0.0.1', user='test', password='3014', db='chatbot_datalog', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = """UPDATE datalog SET star_val = '%d' WHERE uuid = '%s' AND input_time IN (SELECT MAX(input_time) from datalog_2 WHERE uuid = '%s')"""%(int(star_val), uuid, uuid)
+            sql = """UPDATE datalog SET star_val = '%d' WHERE uuid = '%s' AND input_time IN (SELECT MAX(input_time) from datalog WHERE uuid = '%s')"""%(int(star_val), uuid, uuid)
             cursor.execute(sql)
         connection.commit()
         connection.close()
