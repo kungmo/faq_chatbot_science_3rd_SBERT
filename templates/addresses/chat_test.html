@@ -307,7 +307,7 @@ function sendMessage_starrating(num_ans){
     document.getElementById('uuid1').value = uuid1
     {# 데이터(메시지 / 유저에이전트 값) 전송 #}
     $.ajax({
-        url: 'http://localhost:8000/chat_test_2/',
+        url: 'http://localhost:8000/chat_test/',
         type: 'post',
         dataType: 'json',
         data: $('form').serialize(),
