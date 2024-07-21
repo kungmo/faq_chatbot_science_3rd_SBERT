@@ -179,3 +179,6 @@ def chat_service_2(request):
             return HttpResponse(json.dumps(output), status=200)
     else:
         return render(request, 'addresses/chat_service_2.html')
+
+def index(request):
+    return render(request, 'addresses/index.html')

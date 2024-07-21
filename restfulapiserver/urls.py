@@ -8,14 +8,17 @@ from django.views.generic.base import RedirectView
 from django.views.static import serve
 
 urlpatterns = [
+    path('', views.index),
     path('addresses/', views.address_list),
     path('addresses/<int:pk>/', views.address),
     path('login/', views.login),
     path('app_login/', views.app_login),
     path('admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('chat_service/', views.chat_service),
-    path('chat_service_2/', views.chat_service_2),
+    path('chat_service/', views.index),
+    path('chat_service_2/', views.index),
+    #path('chat_service/', views.chat_service),
+    #path('chat_service_2/', views.chat_service_2),
     path('chat_test/', views.chat_test),
     path('chat_test_2/', views.chat_test_2),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico'))),
