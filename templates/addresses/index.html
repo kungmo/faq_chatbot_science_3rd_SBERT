@@ -4,19 +4,228 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google-site-verification" content="GqFIsZKGuuwUkhwkhzn4IukPPOktvKHyCIQ7xKrteB4" />
     <meta name="naver-site-verification" content="60cf9a1c028fbe9654d19bd5247c3d86bec5e4ae" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="중학교 과학과 고등학교 통합과학 질문에 답변해주는 챗봇입니다" />
     <title>과학 질문 답변 챗봇</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-config" content="/static/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 </head>
-<body>
-    <h2>
-        <a href = "https://acer2.snu.ac.kr/chat_service_3">중학교 과학 질문-답변 챗봇</a><br><br>
-        <a href = "https://acer2.snu.ac.kr/chat_service_4">[범박고] 통합과학 질문-답변 챗봇</a><br><br>
-        <a href = "https://acer2.snu.ac.kr/chat_service_5">[성남외고] 통합과학 질문-답변 챗봇</a><br><br>
-        <a href = "https://acer2.snu.ac.kr/chat_service_6">[선유고] 통합과학 질문-답변 챗봇</a><br><br>
-	<a href = "https://acer2.snu.ac.kr/chat_service_6">[경기모바일과학고] 통합과학 질문-답변 챗봇</a><br><br>
-	<a href = "https://acer2.snu.ac.kr/chat_service_6">[인천영종고] 통합과학 질문-답변 챗봇</a><br><br>
-    </h2>
-    중학교 과학과 고등학교 통합과학 질문에 답해주는 챗봇입니다.<br>
-    챗봇 사용 시 개인정보를 수집하지 않습니다. 마음껏 사용하세요.<br><br>
-    서울대학교 물리교육과 음향물리교육연구실
-</body>
-</html>
+<style>
+  :root {
+    --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --msger-bg: #fff;
+    --border: 2px solid #ddd;
+    --left-msg-bg: #ececec;
+    --right-msg-bg: #579ffb;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: var(--body-bg);
+    font-family: Helvetica, sans-serif;
+  }
+  
+  ul, li {
+    list-style: none;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 867px;
+    margin: 25px 10px;
+    height: calc(100% - 100px);
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .logo {
+    display: block;
+    width: 60px;
+    margin: 0 auto;
+    border-radius: 60px;
+  }
+  
+  .logo img {
+    width: 60px;
+  }
+  
+  .link-list {
+    margin: 8px 0 16px;
+  }
+  
+  .link-item {
+    display: block;
+    width: 350px;
+    padding: 21px;
+    margin: 16px 0;
+    color: #000;
+    border-radius: 60px;
+    background-color: white;
+    text-decoration: none;
+    transition: background 0.23s;
+  }
+  
+  .link-item-gen {
+    display: block;
+    width: 350px;
+    padding: 21px;
+    margin: 16px 0;
+    color: floralwhite;
+    border-radius: 60px;
+    background-color: #de3163;
+    text-decoration: none;
+    transition: background 0.23s;
+  }
+  
+  .link-item:hover {
+    background: #BAD1E6;
+  }
+  
+  .link-item-gen:hover {
+    color: black;
+    background: #ffb7c5;
+  }
+  
+  .link-text {
+    font-size: 12px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+  
+  .link-text:last-child {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .teacher-button {
+    background-color: #579ffb;
+    transition: background 0.23s;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 5px;
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .teacher-button:hover {
+  background: rgb(27, 85, 165);
+  }
+  
+    .teacher-button-gen {
+    background-color: #de3163;
+    transition: background 0.23s;
+    color: floralwhite;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 5px;
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .teacher-button-gen:hover {
+  background: #ffb7c5;
+  }
+  
+  .teacher-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  </style>
+  
+  <body>
+    <section class="wrapper">
+      <ul class="link-list">
+        <li>
+          <a href="/chat_service_3" class="link-item">중학교 과학 질문 - 답변 챗봇</a>
+        </li>
+        <li>
+          <a href="/chat_service_4" class="link-item">고등학교 통합과학 질문 - 답변 챗봇</a>
+        </li>
+        <li>
+          <a href="http://acer2.snu.ac.kr:8501" class="link-item-gen">✨ 생성형 AI 과학 질문 - 답변 챗봇</a>
+        </li>
+        <li>
+          <a href="/chat_service_5" class="link-item">[성남외고] 통합과학 질문 - 답변 챗봇</a>
+        </li>
+        <li>
+          <a href="/chat_service_6" class="link-item">[선유고] 통합과학 질문 - 답변 챗봇</a>
+        </li>
+      </ul>
+      <p class="link-text">
+        중학교 과학과 고등학교 통합과학 질문에 답해주는 챗봇입니다.
+        <br>
+        챗봇 사용 시 개인정보를 수집하지 않습니다. 마음껏 사용하세요.
+      </p>
+      <p class="link-text">
+        <b>서울대학교 물리교육과 음향물리교육연구실</b>
+      </p>
+      <p class="link-text" id="teacher-paragraph">
+        교사용 페이지
+      </p>
+      <div id="teacher-links" style="display: none;">
+        <!-- Links for teachers -->
+        <div class="teacher-buttons">
+          <a href="/datalog_list_3" class="teacher-button">중학교</a>
+          <a href="/datalog_list_4" class="teacher-button">범박고</a>
+          <a href="/datalog_list_5" class="teacher-button">성남외고</a>
+          <a href="/datalog_list_6" class="teacher-button">선유고</a>
+        </div>
+          <br>
+        <div class="teacher-buttons">
+          <a href="/datalog_list_gen" class="teacher-button-gen">생성형 AI</a>
+        </div>
+      </div>
+    </section>
+    <script>
+        document.getElementById('teacher-paragraph').addEventListener('click', function() {
+        var teacherLinks = document.getElementById('teacher-links');
+        if (teacherLinks.style.display === 'none') {
+          teacherLinks.style.display = 'block';
+        } else {
+          teacherLinks.style.display = 'none';
+        }});
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "jxgvika2jm");
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L79BXG6DQQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-L79BXG6DQQ');
+    </script>
+  </body>
+  </html>
