@@ -33,7 +33,7 @@ def get_commit_info(repo_path):
     return all_commits
 
 # Repository path
-repo_path = '/home/ubuntu/faq_chatbot_science_3rd_SBERT'
+repo_path = '/home/ubuntu/faq_chatbot_science_3rd'
 
 try:
     # Get all commit information
